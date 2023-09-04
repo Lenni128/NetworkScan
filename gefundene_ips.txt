@@ -1,0 +1,3 @@
+Netzwerkadresse: 192.168.0.1/24
+IP-Adresse des Routers: 192.168.0.1
+
