@@ -8,6 +8,12 @@ With this self-developed Python Network Scanner, specially designed for the Rasp
 - Power supply
 - SD card with Raspbian OS
 
+### How i set my Email account right
+1. Go to the website [web.de](https://web.de) and create an account if you do not already have one.  
+2. Go to the settings of your account and click on the tab ```E-Mail``` and then on ```POP3 & IMAP```.
+3. Now you have to activate the IMAP access and save the changes.
+
+
 ### Installation
 1. Clone this repository and change into this directory
 2. Please change the following variables in the ```main.py``` file in the ```scripts``` directory:
@@ -17,7 +23,6 @@ With this self-developed Python Network Scanner, specially designed for the Rasp
     - ```smtp_password``` set it to your email password from web.de
     - ```receiver_email``` set it to the email address where you want to receive the results
    
-    - ```bash parts[-1] = '1' # ``` change the number of the subnet of your network
    
 5. Install the Software on your Raspberry Pi with the following command:
 
@@ -25,7 +30,7 @@ With this self-developed Python Network Scanner, specially designed for the Rasp
 you can also use the ```-h``` flag to get more information about the installation script.
 
 
-3. At the first installation you have to start an own service to start the script always at boot time.
+3. during the first installation, you must start a custom service to always start the script when booting the Raspberry Pi 4.
 4. To do this, you have to create a new service file in the directory ```/etc/systemd/system/``` with the following command:
 
 ```sudo nano /etc/systemd/system/networkscan.service```
@@ -55,6 +60,7 @@ Now you can check the status of the service with the following command:
 ```sudo systemctl status networkscan.service```
 
 If the service is running, you can reboot your Raspberry Pi and the service will start automatically.
+
 
 
 

@@ -4,6 +4,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
 def sendData():
     # Erstellen Sie eine E-Mail
     message = MIMEMultipart()
@@ -12,7 +13,7 @@ def sendData():
     message['Subject'] = subject
 
     # Lesen Sie den Inhalt der Datei
-    with open("../../gefundene_ips.txt", "r") as file:
+    with open("../../found_ips.txt", "r") as file:
         file_content = file.read()
 
     # Fügen Sie den Dateiinhalt zur E-Mail hinzu
@@ -26,55 +27,55 @@ def sendData():
         text = message.as_string()
         server.sendmail(sender_email, receiver_email, text)
         server.quit()
-        print("E-Mail mit der Datei wurde erfolgreich über web.de gesendet.")
+        print("Send e-mail successfully")
     except Exception as e:
-        print("Fehler beim Senden der E-Mail:", str(e))
+        print("Error by sending the e-mail:", str(e))
 
 
-
-#E-Mail-Konfiguration für web.de
+# Config for web.de
 smtp_server = 'smtp.web.de'
-smtp_port = 587  # TLS-Port für web.de
-smtp_username = 'megablack1@web.de'  # Ihre web.de-Adresse
-smtp_password = '20kons08'  # Ihr web.de-Passwort
+smtp_port = 587  # TLS-Port
+smtp_username = 'YOUR_USERNAME'  # YOUR USERNAME
+smtp_password = 'YOUR_PASSWORD'  # YOUR PASSWORD
 
-sender_email = 'megablack1@web.de'  # Ihre web.de-Adresse
-receiver_email = 'peterslennart7@gmail.com'  # E-Mail-Adresse des Empfängers
-subject = 'Gefundene IPs'  # Betreff Ihrer E-Mail
+sender_email = 'YOUR_EMAIL'  # YOUR_EMAIL
+receiver_email = 'RECEIVER_EMAIL'  # RECEIVER_EMAIL
+subject = 'Found IPs'  # Betreff Ihrer E-Mail
 
-# Befehl ausführen, um die IP-Adresse von eth0 zu erhalten
-eth0_ip = subprocess.check_output("ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1", shell=True)
+interface = "eth0"
+
+eth0_ip = subprocess.check_output("ip addr show " + interface + "| grep 'inet ' | awk '{print $2}' | cut -d'/' -f1",
+                                  shell=True)
+
 eth0_ip = eth0_ip.decode("utf-8").strip()
 
-# Die Netzwerkmaske auf /24 (Standard-Subnetzmaske für die meisten Heimnetzwerke) setzen
 subnet_mask = "/24"
 
-# Die IP-Adresse des Routers im Netzwerk ermitteln (Gateway)
-# in der Regel ist der Router die erste IP-Adresse im Subnetz (xxx.xxx.xxx.1)
+# The IP address of the router on the network (Gateway)
+# in the Rule the Router is the first IP-Address in the Subnet (xxx.xxx.xxx.1)
 parts = eth0_ip.split('.')
-parts[-1] = '1'  # Setzen Sie das letzte Teil der IP-Adresse auf 1, um den Router darzustellen
+parts[-1] = '1'
 router_ip = '.'.join(parts)
 
-# Die Netzwerkadresse erstellen, indem Sie die IP-Adresse des Routers und die Subnetzmaske kombinieren
+# create a network address by combining the router IP address and the subnet mask
 network_address = router_ip + subnet_mask
-print("Netzwerkadresse:", network_address)
+print("Networkadress:", network_address)
 
-# Erstellen Sie einen Nmap-Scanner
+#create a new nmap scanner
 scanner = nmap.PortScanner()
 
-# Führen Sie den Nmap-Scan durch
+# scan the network for hosts
 scanner.scan(hosts=network_address, arguments="-sn")
 
-
-# Öffnen Sie eine Datei zum Schreiben der gefundenen IP-Adressen
-with open("../../gefundene_ips.txt", "w") as file:
-    file.write("  Netzwerkadresse: " + network_address + "\n")
-    file.write("  IP-Adresse des Routers: " + router_ip + "\n\n")
+# open a file to write the found IP addresses to
+with open("../../found_ips.txt", "w") as file:
+    file.write("Interface: " + interface + "\n")
+    file.write("  Networkadress: " + network_address + "\n")
+    file.write("  IP from the router: " + router_ip + "\n\n")
     for host in scanner.all_hosts():
         file.write(host + "\n")
-        print("Gefundene IP-Adresse:", host)
+        print("Found IPs:", host)
 
-print("Scan abgeschlossen. Gefundene IP-Adressen wurden in 'gefundene_ips.txt' gespeichert.")
+print("Scan Completed.")
 
 sendData()
-
