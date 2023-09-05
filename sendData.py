@@ -1,13 +1,28 @@
 
 
+#E-Mail-Konfiguration für web.de
+smtp_server = 'smtp.web.de'
+smtp_port = 587  # TLS-Port für web.de
+smtp_username = 'megablack1@web.de'  # Ihre web.de-Adresse
+smtp_password = '20kons08'  # Ihr web.de-Passwort
 
+sender_email = 'megablack1@web.de'  # Ihre web.de-Adresse
+receiver_email = 'peterslennart7@gmail.com'  # E-Mail-Adresse des Empfängers
+subject = 'Gefundene IPs'  # Betreff Ihrer E-Mail
 
+# Importieren der benötigten Module
+import subprocess
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Erstellen Sie eine E-Mail
 message = MIMEMultipart()
 message['From'] = sender_email
 message['To'] = receiver_email
 message['Subject'] = subject
+
+file_content = "Hallo Welt"
 
 # Fügen Sie den Dateiinhalt zur E-Mail hinzu
 message.attach(MIMEText(file_content, 'plain'))

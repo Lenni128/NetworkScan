@@ -52,7 +52,7 @@ ssh $user_name@$ip_address "
     pip3 install python-nmap &&
     pip3 install python3-nmap &&
     sudo apt-get install nmap
-
+    pip3 install python3-smtplib
 "
 
 echo "Done!"

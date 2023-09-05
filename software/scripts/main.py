@@ -50,7 +50,7 @@ eth0_ip = eth0_ip.decode("utf-8").strip()
 subnet_mask = "/24"
 
 # Die IP-Adresse des Routers im Netzwerk ermitteln (Gateway)
-# In der Regel ist der Router die erste IP-Adresse im Subnetz (xxx.xxx.xxx.1)
+# in der Regel ist der Router die erste IP-Adresse im Subnetz (xxx.xxx.xxx.1)
 parts = eth0_ip.split('.')
 parts[-1] = '1'  # Setzen Sie das letzte Teil der IP-Adresse auf 1, um den Router darzustellen
 router_ip = '.'.join(parts)
