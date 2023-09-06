@@ -31,7 +31,8 @@ you can also use the ```-h``` flag to get more information about the installatio
 
 
 4. during the first installation, you must start a custom service to always start the script when booting the Raspberry Pi 4.
-5. To do this, you have to create a new service file in the directory ```/etc/systemd/system/``` with the following command:
+
+5. Connect to your Raspberry pi 4 with ssh, Now you need to create a new service file in the directory ``/etc/system/system/`` with the following command:
 
 ```sudo nano /etc/systemd/system/networkscan.service```
 and paste the following content into the file:
