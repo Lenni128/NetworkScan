@@ -24,14 +24,14 @@ With this self-developed Python Network Scanner, specially designed for the Rasp
     - ```receiver_email``` set it to the email address where you want to receive the results
    
    
-5. Install the Software on your Raspberry Pi with the following command:
+3. Install the Software on your Raspberry Pi with the following command:
 
 ```bash install.bash -i <ip_adress from your Raspberry pi> -U <username>```
 you can also use the ```-h``` flag to get more information about the installation script.
 
 
-3. during the first installation, you must start a custom service to always start the script when booting the Raspberry Pi 4.
-4. To do this, you have to create a new service file in the directory ```/etc/systemd/system/``` with the following command:
+4. during the first installation, you must start a custom service to always start the script when booting the Raspberry Pi 4.
+5. To do this, you have to create a new service file in the directory ```/etc/systemd/system/``` with the following command:
 
 ```sudo nano /etc/systemd/system/networkscan.service```
 and paste the following content into the file:
@@ -49,7 +49,7 @@ WantedBy=multi-user.target
 ```
 Please replace the ```<USER>``` with your username and the ```<Description>``` with your own description.
 
-5. Now you have to enable and start the service with the following command:
+6. Now you have to enable and start the service with the following command:
 
 ```sudo systemctl enable networkscan.service```
 
