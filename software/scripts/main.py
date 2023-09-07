@@ -16,7 +16,7 @@ receiver_email = 'RECEIVER_EMAIL'
 subject = 'Found IPs'
 
 # Network interface and IP information
-interface = "wlp2s0"  # normal is "eth0" by raspberry pi 4
+interface = "eth0"  # normal is "eth0" by raspberry pi 4
 eth0_ip = subprocess.check_output("ip addr show " + interface + "| grep 'inet ' | awk '{print $2}' | cut -d'/' -f1",
                                   shell=True)
 eth0_ip = eth0_ip.decode("utf-8").strip()
