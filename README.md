@@ -61,9 +61,9 @@ Now you can check the status of the service with the following command:
 
 If the service is running, you can reboot your Raspberry Pi and the service will start automatically.
 
-
-
-
+### Launch Manuell:
+   
+- if you have a ssh connection to your Raspberry pi 4 change directory in ```software/``` and launch ```start.sh``` with ```./start.sh```
 
 ### Tip:
  - you can also store a ssh key on your Raspberry pi 4, so you don't have to enter the password every time by install the software.
