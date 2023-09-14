@@ -1,6 +1,6 @@
 # NetworkScan
 ## Description
-With this self-developed Python Network Scanner, specially designed for the Raspberry Pi 4 B, you can easily scan all IP addresses in a network over Ethernet when plugging in the Raspberry pis and conveniently send the results to any email address. This versatile tool uses the powerful Nmap engine to perform an simple analysis of your network.
+With this self-developed Python Network Scanner, specially designed for the Raspberry Pi 4 B, you can easily scan all IP addresses in a network over Ethernet when plugging in the Raspberry Pi and conveniently send the results to any email address. This versatile tool uses the powerful Nmap engine to perform a simple analysis of your network.
 ## Usage
 ### Requirements
 - Raspberry Pi 4B
@@ -8,14 +8,14 @@ With this self-developed Python Network Scanner, specially designed for the Rasp
 - Power supply
 - SD card with Raspbian OS
 
-### How i set my Email account right
+### How I set my Email account right
 1. Go to the website [web.de](https://web.de) and create an account if you do not already have one.  
 2. Go to the settings of your account and click on the tab ```E-Mail``` and then on ```POP3 & IMAP```.
 3. Now you have to activate the IMAP access and save the changes.
 
 
 ### Installation
-1. Clone this repository and change into this directory
+1. Clone this repository and change into this directory.
 2. Please change the following variables in the ```main.py``` file in the ```scripts``` directory:
     
     - ```sender_email``` set it to your email address
@@ -30,9 +30,9 @@ With this self-developed Python Network Scanner, specially designed for the Rasp
 you can also use the ```-h``` flag to get more information about the installation script.
 
 
-4. during the first installation, you must start a custom service to always start the script when booting the Raspberry Pi 4.
+4. During the first installation, you have to create a custom service to always start the script when booting the Raspberry Pi 4.
 
-5. Connect to your Raspberry pi 4 with ssh, Now you need to create a new service file in the directory ``/etc/system/system/`` with the following command:
+4.1 Connect to your Raspberry Pi 4 with ssh, now you need to create a new service file in the directory ``/etc/system/system/`` with the following command:
 
 ```sudo nano /etc/systemd/system/networkscan.service```
 and paste the following content into the file:
@@ -50,7 +50,7 @@ WantedBy=multi-user.target
 ```
 Please replace the ```<USER>``` with your username and the ```<Description>``` with your own description.
 
-6. Now you have to enable and start the service with the following command:
+4.2. Now you have to enable and start the service with the following commands:
 
 ```sudo systemctl enable networkscan.service```
 
